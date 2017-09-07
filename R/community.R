@@ -347,6 +347,11 @@ make_clusters <- function(graph, membership = NULL, algorithm = NULL,
   } else if (!is.null(merges)) {
     res$vcount <- nrow(merges) + 1
   }
+  
+  if (igraph_opt("add.vertex.names") && is_named(graph)) {
+    res$names <- V(graph)$name
+  }
+
   class(res) <- "communities"
   res
 }
